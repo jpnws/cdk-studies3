@@ -1,9 +1,7 @@
 {
-  "app": "cd ../web && yarn build && cd ../infrastructure && npx ts-node --prefer-ts-exts bin/chapter-3.ts",
+  "app": "cd ../web && yarn build && cd ../infra && npx ts-node --prefer-ts-exts bin/chapter-3.ts",
   "watch": {
-    "include": [
-      "**"
-    ],
+    "include": ["**"],
     "exclude": [
       "README.md",
       "cdk*.json",
@@ -26,9 +24,6 @@
     "@aws-cdk/aws-ec2:uniqueImdsv2TemplateName": true,
     "@aws-cdk/core:checkSecretUsage": true,
     "@aws-cdk/aws-iam:minimizePolicies": true,
-    "@aws-cdk/core:target-partitions": [
-      "aws",
-      "aws-cn"
-    ]
+    "@aws-cdk/core:target-partitions": ["aws", "aws-cn"]
   }
 }
