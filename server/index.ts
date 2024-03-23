@@ -34,7 +34,7 @@ const dynamodb = DynamoDBDocumentClient.from(ddbClient, { marshallOptions });
 app.use(cors());
 app.use(express.json());
 
-app.post("/", async (req, res) => {
+app.post("/", async (req: express.Request, res: express.Response) => {
   const { name, description, completed } = req.body.todo;
 
   const todo = {
@@ -54,12 +54,12 @@ app.post("/", async (req, res) => {
 
   await dynamodb.send(command);
 
-  res.status(200).send({
-    todo,
+  res.status(500).send({
+    error: "Internal Server Error",
   });
 });
 
-app.get("/", async (_, res) => {
+app.get("/", async (_: express.Request, res: express.Response) => {
   const params: QueryCommandInput = {
     TableName: "main_table",
     ExpressionAttributeNames: {
@@ -80,7 +80,7 @@ app.get("/", async (_, res) => {
   });
 });
 
-app.get("/healthcheck", async (_, res) =>
+app.get("/healthcheck", async (_: express.Request, res: express.Response) =>
   res.status(200).send(JSON.stringify("OK"))
 );
 
