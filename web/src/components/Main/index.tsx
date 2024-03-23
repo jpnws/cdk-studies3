@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-import { Interfaces } from '../../../@types/interfaces';
+import { Interfaces } from "../../../@types/interfaces";
 
-import { CreateTodo } from '../CreateTodo';
-import { Todo } from '../Todo';
+import { CreateTodo } from "../CreateTodo";
+import { Todo } from "../Todo";
 
-import { MainContainer } from './styles';
+import { MainContainer } from "./styles";
 
 /* ----------
  * Add backend URL provided by the cdk deploy here!
  * ---------- */
-const backend_url = 'http://localhost:3333/';
-
+const backend_url =
+  "http://Chapte-LB8A1-roVpqIEIVqOK-1166572806.us-east-1.elb.amazonaws.com";
 
 export const Main: React.FC = () => {
   /* ----------
@@ -39,26 +39,25 @@ export const Main: React.FC = () => {
       todo: new_todo,
     });
 
-    setTodos(current_todos => [...current_todos, response.data.todo]);
+    setTodos((current_todos) => [...current_todos, response.data.todo]);
   };
 
-  const to_complete = todos.filter(todo => !todo.completed).length;
-  const completed = todos.filter(todo => todo.completed).length;
+  const to_complete = todos.filter((todo) => !todo.completed).length;
+  const completed = todos.filter((todo) => todo.completed).length;
 
   return (
     <MainContainer>
       <h1>Today</h1>
 
-
       <CreateTodo handleTodoSubmit={handleTodoSubmit} />
 
-      <p>{completed}/{to_complete} completed</p>
+      <p>
+        {completed}/{to_complete} completed
+      </p>
 
-
-      {todos.map(t => (
+      {todos.map((t) => (
         <Todo />
       ))}
-
     </MainContainer>
   );
 };
